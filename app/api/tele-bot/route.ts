@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
+import { URLSearchParams } from "url";
 //import { getServerSideConfig } from "../../config/server";
 
 //const serverConfig = getServerSideConfig();
@@ -16,24 +16,33 @@ export async function POST(req: NextRequest) {
   console.log(estringa);
 
   // var estringa = req.json;
-  var payload = identificar(estringa);
+  var p = identificar(estringa);
 
-  var data = {
-    method: "post",
-    payload: payload,
-  };
-  console.log(data);
-  // var result =  await (await fetch("https://api.telegram.org/bot6161094203:AAEEYcmYROYUxZLBHNr1PeSRvZi8nwddHks/", data)).json();
-  // console.log(result)
-  // return NextResponse.json({
-  //   "result":"ok"
-  // })
-  return fetch(
-    "https://api.telegram.org/bot6161094203:AAEEYcmYROYUxZLBHNr1PeSRvZi8nwddHks/",
-    data,
-  );
+  var payload = JSON.parse(JSON.stringify(p));
+  var url =
+    "https://api.telegram.org/bot6161094203:AAEEYcmYROYUxZLBHNr1PeSRvZi8nwddHks/?" +
+    Object.keys(payload)
+      .map((key) => `${key}=${encodeURIComponent(payload[key])}`)
+      .join("&");
+  console.log(url);
+  return fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  });
 }
-
+function identifier1(e: any) {
+  return {
+    param1: "1",
+  };
+}
 function identificar(e: any) {
   if (e.message.text) {
     return {

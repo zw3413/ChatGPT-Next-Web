@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { URLSearchParams } from "url";
-//import { getServerSideConfig } from "../../config/server";
+import { getServerSideConfig } from "../../config/server";
 
-//const serverConfig = getServerSideConfig();
+const serverConfig = getServerSideConfig();
+const telegram_url =
+  "https://api.telegram.org/bot" + serverConfig.botToken + "/";
 
 export async function POST(req: NextRequest) {
   //var estringa = JSON.parse(e.postData.contents);
@@ -20,7 +22,8 @@ export async function POST(req: NextRequest) {
 
   var payload = JSON.parse(JSON.stringify(p));
   var url =
-    "https://api.telegram.org/bot6161094203:AAEEYcmYROYUxZLBHNr1PeSRvZi8nwddHks/?" +
+    telegram_url +
+    "?" +
     Object.keys(payload)
       .map((key) => `${key}=${encodeURIComponent(payload[key])}`)
       .join("&");
@@ -65,6 +68,20 @@ function identificar(e: any) {
       photo: text.file_id,
     };
   } else if (e.message.voice) {
+    // get the audio file path
+
+    // reformat the audio
+
+    // transfer the speech to text.
+
+    // send the text to chatgpt.
+
+    // transfer the response text into speech
+
+    // upload the audio to telegram
+
+    // return the speech
+
     return {
       method: "sendVoice",
       chat_id: e.message.chat.id.toString(),

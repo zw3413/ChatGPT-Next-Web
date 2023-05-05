@@ -38,5 +38,8 @@ export const getServerSideConfig = () => {
     needCode: ACCESS_CODES.size > 0,
     proxyUrl: process.env.PROXY_URL,
     isVercel: !!process.env.VERCEL,
+    botToken: process.env.BOT_TOKEN,
+    speechKey: process.env.SPEECH_KEY,
+    speechRegion: process.env.SPEECH_REGION,
   };
 };

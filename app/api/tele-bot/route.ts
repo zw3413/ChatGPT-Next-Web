@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { URLSearchParams } from "url";
 import { getServerSideConfig } from "../../config/server";
-
+import { getFileUrlFromTelegramById } from "./telegramApi";
 const serverConfig = getServerSideConfig();
 const telegram_url =
   "https://api.telegram.org/bot" + serverConfig.botToken + "/";
@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
       .map((key) => `${key}=${encodeURIComponent(payload[key])}`)
       .join("&");
   console.log(url);
+
   return fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
@@ -69,7 +70,7 @@ function identificar(e: any) {
     };
   } else if (e.message.voice) {
     // get the audio file path
-
+    //getFileFromTelegramById(e.message.voice.file_id)
     // reformat the audio
 
     // transfer the speech to text.

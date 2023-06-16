@@ -1,0 +1,49 @@
+{
+  "update_id": 97345022,
+  "message": {
+    "message_id": 107,
+    "from": {
+      "id": 5237573711,
+      "is_bot": false,
+      "first_name": "Elvin",
+      "last_name": "Zhang",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 5237573711,
+      "first_name": "Elvin",
+      "last_name": "Zhang",
+      "type": "private"
+    },
+    "date": 1686923258,
+    "text": "hello1"
+  }
+}
+
+{
+  "update_id": 97345023,
+  "message": {
+    "message_id": 110,
+    "from": {
+      "id": 5237573711,
+      "is_bot": false,
+      "first_name": "Elvin",
+      "last_name": "Zhang",
+      "language_code": "en"
+    },
+    "chat": {
+      "id": 5237573711,
+      "first_name": "Elvin",
+      "last_name": "Zhang",
+      "type": "private"
+    },
+    "date": 1686923494,
+    "voice": {
+      "duration": 2,
+      "mime_type": "audio/ogg",
+      "file_id": "AwACAgUAAxkBAANuZIxo5nfWA19cG7ewxe8dhra6W0cAAjMIAAI7uGhUDXABvPTN02gvBA",
+      "file_unique_id": "AgADMwgAAju4aFQ",
+      "file_size": 12433
+    }
+  }
+}

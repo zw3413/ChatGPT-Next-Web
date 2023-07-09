@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSideConfig } from "../../config/server";
 import { getFileUrlFromTelegramById } from "../tele-bot/telegramApi";
+import { convertOgaToWav } from "../tele-bot/ffmpegApi";
 const serverConfig = getServerSideConfig();
 const telegram_url =
   "https://api.telegram.org/bot" + serverConfig.botToken + "/";
 
 export async function POST(req: NextRequest) {
-  var estringa = await req.json();
+  const estringa = await req.json();
   console.log(estringa);
-  let fileUrl = await getFileUrlFromTelegramById(
+  const fileUrl = await getFileUrlFromTelegramById(
     estringa.message.voice.file_id,
   );
+  const wavUrl = await convertOgaToWav(fileUrl);
   return NextResponse.json({
     fileUrl: fileUrl,
   });

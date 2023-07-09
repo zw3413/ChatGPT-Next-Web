@@ -7,7 +7,7 @@ const telegram_file_url =
   "https://api.telegram.org/file/bot" + serverConfig.botToken + "/";
 const url_getFileById = telegram_url + "?method=getFile&file_id=";
 
-export async function getFileFromTelegramById(fileid: string) {
+export async function getFileUrlFromTelegramById(fileid: string) {
   const url = url_getFileById + fileid;
   console.log(url);
   let response = await fetch(url, {

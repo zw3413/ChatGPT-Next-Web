@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { URLSearchParams } from "url";
 import { getServerSideConfig } from "../../config/server";
 import { getFileUrlFromTelegramById } from "./telegramApi";
+import { convertOgaToWav } from "./ffmpegApi";
 const serverConfig = getServerSideConfig();
 const telegram_url =
   "https://api.telegram.org/bot" + serverConfig.botToken + "/";
@@ -47,7 +48,7 @@ function identifier1(e: any) {
     param1: "1",
   };
 }
-function identificar(e: any) {
+async function identificar(e: any) {
   if (e.message.text) {
     return {
       method: "sendMessage",
@@ -70,9 +71,9 @@ function identificar(e: any) {
     };
   } else if (e.message.voice) {
     // get the audio file path
-    //getFileFromTelegramById(e.message.voice.file_id)
+    //const fileUrl = await getFileUrlFromTelegramById(e.message.voice.file_id)
     // reformat the audio
-
+    //const wavUrl = await convertOgaToWav(fileUrl)
     // transfer the speech to text.
 
     // send the text to chatgpt.

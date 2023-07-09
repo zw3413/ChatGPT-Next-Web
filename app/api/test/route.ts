@@ -12,6 +12,12 @@ export async function POST(req: NextRequest) {
   const fileUrl = await getFileUrlFromTelegramById(
     estringa.message.voice.file_id,
   );
+  if (fileUrl.startsWith("error") || fileUrl.startsWith("exception")) {
+    return NextResponse.json({
+      state: "fail",
+      msg: fileUrl,
+    });
+  }
   const wavUrl = await convertOgaToWav(fileUrl);
   return NextResponse.json({
     fileUrl: fileUrl,

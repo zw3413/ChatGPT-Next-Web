@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   }
   const wavUrl = await convertOgaToWav(fileUrl);
   return NextResponse.json({
-    fileUrl: fileUrl,
+    fileUrl: wavUrl,
   });
   //   return new Promise<string>((resolve,reject)=>{
   //     resolve(fileUrl);
